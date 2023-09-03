@@ -1,16 +1,33 @@
 <script lang="ts">
+  import type { IPrimeDiscoveryStrategy } from "../PrimeDiscoveryStrategies/IPrimeDiscoveryStrategy";
   import { ChatGptStrategy } from "../PrimeDiscoveryStrategies/ChatGptStrategy";
+  import { WikiStrategy } from "../PrimeDiscoveryStrategies/WikiStrategy";
 
   let howManyToCalc: number = 10
   let primes: number[] = []
   let txtAreaCols: number = 30
   let txtAreaRows: number = 10
 
+  let selectedStrategy = 'Wikipedia'
+  let isAdvancedSettingsOpen = false;
+
   const calculatePrimes = () => {
-    primes = new ChatGptStrategy().getFirstNPrimeNumbers(howManyToCalc)
+    let strategy: IPrimeDiscoveryStrategy = new WikiStrategy()
+
+    if (selectedStrategy === 'ChatGPT') {
+      strategy = new ChatGptStrategy()
+    } else if (selectedStrategy === 'Wikipedia') {
+      strategy = new WikiStrategy()
+    }
+  
+    primes = strategy.getFirstNPrimeNumbers(howManyToCalc)
     txtAreaRows = Math.max(Math.sqrt(primes.length), 5)
     txtAreaCols = primes.length <= 1000 ? 30 : Math.sqrt(primes.length)
   }
+
+  const toggleAdvancedSettings = () => {
+    isAdvancedSettingsOpen = !isAdvancedSettingsOpen;
+  };
 </script>
 
 <main>
@@ -27,6 +44,22 @@
   {#if primes.length > 0}
     <textarea name="Prime Numbers" id="primeNumbers" cols={txtAreaCols} rows={txtAreaRows} disabled>{primes}</textarea>
   {/if}
+
+  <div class="advanced-settings">
+    <h5>
+      <button on:click={toggleAdvancedSettings}>
+        Advanced Settings {isAdvancedSettingsOpen ? '▼' : '▶'}
+      </button>
+    </h5>
+    {#if isAdvancedSettingsOpen}
+      <label>
+        <input type="radio" bind:group={selectedStrategy} value="Wikipedia"> Wikipedia Strategy
+      </label>
+      <label>
+        <input type="radio" bind:group={selectedStrategy} value="ChatGPT"> ChatGPT Strategy
+      </label>
+    {/if}
+  </div>
 </main>
 
 <style>
@@ -60,6 +93,15 @@
     margin: 1rem;
     overflow: auto;
     width: 100%;
+  }
+
+  .advanced-settings {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .advanced-settings h5 button {
+    cursor: pointer;
   }
 
   @media (min-width: 768px) {
