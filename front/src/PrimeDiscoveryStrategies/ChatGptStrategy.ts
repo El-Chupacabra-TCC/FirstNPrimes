@@ -1,9 +1,9 @@
-import type { IPrimeDiscoveryStrategy } from "./IPrimeDiscoveryStrategy";
+import type { IPrimalityTestStrategy } from "./IPrimalityTestStrategy";
 
 /**
  * Implementation of the IPrimeDiscoveryStrategy interface created by GPT-3.5.
  */
-export class ChatGptStrategy implements IPrimeDiscoveryStrategy {
+export class ChatGptStrategy implements IPrimalityTestStrategy {
     /**
      * @inheritdoc
      */

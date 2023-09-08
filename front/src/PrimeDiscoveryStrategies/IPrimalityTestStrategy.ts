@@ -2,7 +2,7 @@
  * Interface for prime number discovery strategies.
  * @interface
  */
-export interface IPrimeDiscoveryStrategy {
+export interface IPrimalityTestStrategy {
     /**
      * Get the first 'n' prime numbers.
      *

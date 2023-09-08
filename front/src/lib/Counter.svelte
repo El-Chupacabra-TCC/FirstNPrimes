@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { IPrimeDiscoveryStrategy } from "../PrimeDiscoveryStrategies/IPrimeDiscoveryStrategy";
+  import type { IPrimalityTestStrategy } from "../PrimeDiscoveryStrategies/IPrimalityTestStrategy";
   import { ChatGptStrategy } from "../PrimeDiscoveryStrategies/ChatGptStrategy";
   import { WikiStrategy } from "../PrimeDiscoveryStrategies/WikiStrategy";
 
@@ -12,7 +12,7 @@
   let isAdvancedSettingsOpen = false;
 
   const calculatePrimes = () => {
-    let strategy: IPrimeDiscoveryStrategy = new WikiStrategy()
+    let strategy: IPrimalityTestStrategy = new WikiStrategy()
 
     if (selectedStrategy === 'ChatGPT') {
       strategy = new ChatGptStrategy()

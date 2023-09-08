@@ -1,10 +1,10 @@
-import type { IPrimeDiscoveryStrategy } from "./IPrimeDiscoveryStrategy";
+import type { IPrimalityTestStrategy } from "./IPrimalityTestStrategy";
 
 /**
  * Implementation using isPrime function from Wikipedia.
  * Source: https://en.wikipedia.org/wiki/Primality_test
  */
-export class WikiStrategy implements IPrimeDiscoveryStrategy {
+export class WikiStrategy implements IPrimalityTestStrategy {
     /**
      * @inheritdoc
      */
