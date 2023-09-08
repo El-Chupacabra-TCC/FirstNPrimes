@@ -1,9 +1,9 @@
 import { BasePrimalityTestStrategy } from "./BasePrimalityTestStrategy";
 
 /**
- * Implementation of the IPrimeDiscoveryStrategy interface created by GPT-3.5.
+ * Implementation of the IPrimeDiscoveryStrategy interface created by Chat GPT.
  */
-export class ChatGptStrategy extends BasePrimalityTestStrategy {
+export class NaiveStrategy extends BasePrimalityTestStrategy {
     /**
      * @inheritdoc
      */

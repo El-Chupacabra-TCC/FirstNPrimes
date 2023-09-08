@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { IPrimalityTestStrategy } from "../PrimeDiscoveryStrategies/IPrimalityTestStrategy";
-  import { ChatGptStrategy } from "../PrimeDiscoveryStrategies/ChatGptStrategy";
+  import { NaiveStrategy } from "../PrimeDiscoveryStrategies/NaiveStrategy";
   import { WikiStrategy } from "../PrimeDiscoveryStrategies/WikiStrategy";
 
   let howManyToCalc: number = 10
@@ -15,7 +15,7 @@
     let strategy: IPrimalityTestStrategy = new WikiStrategy()
 
     if (selectedStrategy === 'ChatGPT') {
-      strategy = new ChatGptStrategy()
+      strategy = new NaiveStrategy()
     } else if (selectedStrategy === 'Wikipedia') {
       strategy = new WikiStrategy()
     }
