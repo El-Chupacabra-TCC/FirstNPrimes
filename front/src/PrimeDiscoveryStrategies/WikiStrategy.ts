@@ -1,25 +1,10 @@
-import type { IPrimalityTestStrategy } from "./IPrimalityTestStrategy";
+import { BasePrimalityTestStrategy } from "./BasePrimalityTestStrategy";
 
 /**
  * Implementation using isPrime function from Wikipedia.
  * Source: https://en.wikipedia.org/wiki/Primality_test
  */
-export class WikiStrategy implements IPrimalityTestStrategy {
-    /**
-     * @inheritdoc
-     */
-    getFirstNPrimeNumbers(n: number): number[] {
-        const primes: number[] = []
-
-        for (let i = 0; primes.length < n; i++) {
-            if (this.isPrime(i)) {
-                primes.push(i)
-            }
-        }
-
-        return primes;
-    }
-
+export class WikiStrategy extends BasePrimalityTestStrategy {
     /**
      * @inheritdoc
      */

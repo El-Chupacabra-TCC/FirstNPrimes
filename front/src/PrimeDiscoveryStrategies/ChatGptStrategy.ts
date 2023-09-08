@@ -1,26 +1,9 @@
-import type { IPrimalityTestStrategy } from "./IPrimalityTestStrategy";
+import { BasePrimalityTestStrategy } from "./BasePrimalityTestStrategy";
 
 /**
  * Implementation of the IPrimeDiscoveryStrategy interface created by GPT-3.5.
  */
-export class ChatGptStrategy implements IPrimalityTestStrategy {
-    /**
-     * @inheritdoc
-     */
-    getFirstNPrimeNumbers(n: number): number[] {
-        const primes: number[] = [];
-        let currentNumber = 2;
-
-        while (primes.length < n) {
-            if (this.isPrime(currentNumber)) {
-                primes.push(currentNumber);
-            }
-            currentNumber++;
-        }
-
-        return primes;
-    }
-
+export class ChatGptStrategy extends BasePrimalityTestStrategy {
     /**
      * @inheritdoc
      */
