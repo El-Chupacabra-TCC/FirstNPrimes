@@ -1,26 +1,25 @@
 <script lang="ts">
   import type { IPrimalityTestStrategy } from "../PrimeDiscoveryStrategies/IPrimalityTestStrategy";
   import { NaiveStrategy } from "../PrimeDiscoveryStrategies/NaiveStrategy";
-  import { WikiStrategy } from "../PrimeDiscoveryStrategies/WikiStrategy";
+  import { MillerRabinStrategy } from "../PrimeDiscoveryStrategies/MillerRabinStrategy";
 
   let howManyToCalc: number = 10
   let primes: number[] = []
   let txtAreaCols: number = 30
   let txtAreaRows: number = 10
 
-  let selectedStrategy = 'Wikipedia'
+  const primalityTestStrategies: Record<string, IPrimalityTestStrategy> = {
+    "Naive approach": new NaiveStrategy(),
+    "Miller-Rabin probabilistic algorithm": new MillerRabinStrategy()
+  }
+
+  let selectedStrategy = Object.keys(primalityTestStrategies)[0]
   let isAdvancedSettingsOpen = false;
 
   const calculatePrimes = () => {
-    let strategy: IPrimalityTestStrategy = new WikiStrategy()
-
-    if (selectedStrategy === 'ChatGPT') {
-      strategy = new NaiveStrategy()
-    } else if (selectedStrategy === 'Wikipedia') {
-      strategy = new WikiStrategy()
-    }
-  
+    let strategy: IPrimalityTestStrategy = primalityTestStrategies[selectedStrategy]
     primes = strategy.getFirstNPrimeNumbers(howManyToCalc)
+
     txtAreaRows = Math.max(Math.sqrt(primes.length), 5)
     txtAreaCols = primes.length <= 1000 ? 30 : Math.sqrt(primes.length)
   }
@@ -52,12 +51,11 @@
       </button>
     </h5>
     {#if isAdvancedSettingsOpen}
-      <label>
-        <input type="radio" bind:group={selectedStrategy} value="Wikipedia"> Wikipedia Strategy
-      </label>
-      <label>
-        <input type="radio" bind:group={selectedStrategy} value="ChatGPT"> ChatGPT Strategy
-      </label>
+      {#each Object.keys(primalityTestStrategies) as strategyKey}
+        <label>
+          <input type="radio" bind:group={selectedStrategy} value={strategyKey}> {strategyKey}
+        </label>
+      {/each}
     {/if}
   </div>
 </main>
