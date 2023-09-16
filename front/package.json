@@ -21,6 +21,7 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
-    "big-integer": "^1.6.51"
+    "big-integer": "^1.6.51",
+    "el-chupacabra": "^0.0.3"
   }
 }
