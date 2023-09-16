@@ -14,11 +14,18 @@
   </div>
 
   <p>
-    Check out <a href="#" target="_blank" rel="noreferrer">El Chupacabra</a>, the official framework for gathering performance metrics on client side!
+    We use 
+    <a href="https://github.com/El-Chupacabra-TCC/el-chupacabra" target="_blank" rel="noreferrer">El Chupacabra</a>! 
+    For collecting performance metrics.
+  </p>
+
+  <p>
+    All collected data can be found 
+    <a href="https://docs.google.com/spreadsheets/d/103Hwf4Xm26OctupZV0D4rujSN4S5gxjIgnxgLCMXBhU/edit?usp=sharing" target="_blank" rel="noreferrer">here</a>.
   </p>
 
   <footer class="read-the-docs">
-    @Powered by El Chupa LTDA 2023
+    @Powered by El Chupa &#x1F410;
   </footer>
 </main>
 
