@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { EasyElc, ExecutionProfiles, Persisters, Metrics } from "el-chupacabra"
   import type { IPrimalityTestStrategy } from "../PrimeDiscoveryStrategies/IPrimalityTestStrategy";
   import { NaiveStrategy } from "../PrimeDiscoveryStrategies/NaiveStrategy";
   import { MillerRabinStrategy } from "../PrimeDiscoveryStrategies/MillerRabinStrategy";
@@ -7,6 +8,14 @@
   let primes: number[] = []
   let txtAreaCols: number = 30
   let txtAreaRows: number = 10
+  const easyElc = new EasyElc(
+    new ExecutionProfiles.BrowserExecutionProfile(),
+    new Persisters.SheetsonPersister(
+      import.meta.env.VITE_SHEET_TAB_NAME,
+      import.meta.env.VITE_API_KEY,
+      import.meta.env.VITE_SHEET_ID
+    )
+  );
 
   const primalityTestStrategies: Record<string, IPrimalityTestStrategy> = {
     "Naive approach": new NaiveStrategy(),
@@ -18,7 +27,10 @@
 
   const calculatePrimes = () => {
     let strategy: IPrimalityTestStrategy = primalityTestStrategies[selectedStrategy]
+
+    const profilerController = easyElc.startProfiling(selectedStrategy, [new Metrics.DeltaTimeMetric()])
     primes = strategy.getFirstNPrimeNumbers(howManyToCalc)
+    profilerController.finish()
 
     txtAreaRows = Math.max(Math.sqrt(primes.length), 5)
     txtAreaCols = primes.length <= 1000 ? 30 : Math.sqrt(primes.length)
