@@ -2,8 +2,8 @@ import bigInt from "big-integer";
 import { BasePrimalityTestStrategy } from "./BasePrimalityTestStrategy";
 
 /**
- * Implementation using bn.js library.
- * Lib: https://www.npmjs.com/package/bn.js
+ * Implementation using big-integer library.
+ * Lib: https://www.npmjs.com/package/big-integer
  */
 export class MillerRabinStrategy extends BasePrimalityTestStrategy {
     /**

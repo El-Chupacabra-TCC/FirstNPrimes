@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "big-integer": "^1.6.51",
-    "el-chupacabra": "^0.0.3"
+    "el-chupacabra": "^0.0.4"
   }
 }
