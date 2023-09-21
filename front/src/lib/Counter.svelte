@@ -30,7 +30,7 @@
 
     const profilerController = easyElc.startProfiling(selectedStrategy, [new Metrics.DeltaTimeMetric()])
     primes = strategy.getFirstNPrimeNumbers(howManyToCalc)
-    profilerController.finish()
+    profilerController.finish({ numberOfCalculatedNumbers: howManyToCalc })
 
     txtAreaRows = Math.max(Math.sqrt(primes.length), 5)
     txtAreaCols = primes.length <= 1000 ? 30 : Math.sqrt(primes.length)
