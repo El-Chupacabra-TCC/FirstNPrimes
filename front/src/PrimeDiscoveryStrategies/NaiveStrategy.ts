@@ -1,7 +1,8 @@
 import { BasePrimalityTestStrategy } from "./BasePrimalityTestStrategy";
 
 /**
- * Implementation of the IPrimeDiscoveryStrategy interface created by Chat GPT.
+ * Implementation of the IPrimeDiscoveryStrategy based on Wikipedia and a Chat GPT answer.
+ * Wikipedia source: https://en.wikipedia.org/wiki/Primality_test
  */
 export class NaiveStrategy extends BasePrimalityTestStrategy {
     /**

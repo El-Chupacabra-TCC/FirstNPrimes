@@ -2,6 +2,7 @@
   import { EasyElc, ExecutionProfiles, Persisters, Metrics } from "el-chupacabra"
   import type { IPrimalityTestStrategy } from "../PrimeDiscoveryStrategies/IPrimalityTestStrategy";
   import { NaiveStrategy } from "../PrimeDiscoveryStrategies/NaiveStrategy";
+  import { BruteForceStrategy } from "../PrimeDiscoveryStrategies/BruteForceStrategy";
   import { MillerRabinStrategy } from "../PrimeDiscoveryStrategies/MillerRabinStrategy";
 
   let howManyToCalc: number = 10
@@ -18,7 +19,8 @@
   );
 
   const primalityTestStrategies: Record<string, IPrimalityTestStrategy> = {
-    "Naive approach": new NaiveStrategy(),
+    "Brute force": new BruteForceStrategy(),
+    "Clever approach": new NaiveStrategy(),
     "Miller-Rabin probabilistic algorithm": new MillerRabinStrategy()
   }
 
@@ -63,11 +65,13 @@
       </button>
     </h5>
     {#if isAdvancedSettingsOpen}
-      {#each Object.keys(primalityTestStrategies) as strategyKey}
-        <label>
-          <input type="radio" bind:group={selectedStrategy} value={strategyKey}> {strategyKey}
-        </label>
-      {/each}
+      <div id="adv-settings-options-box">
+        {#each Object.keys(primalityTestStrategies) as strategyKey}
+          <label>
+            <input type="radio" bind:group={selectedStrategy} value={strategyKey}> {strategyKey}
+          </label>
+        {/each}
+      </div>
     {/if}
   </div>
 </main>
@@ -112,6 +116,16 @@
 
   .advanced-settings h5 button {
     cursor: pointer;
+  }
+
+  #adv-settings-options-box {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+
+  #adv-settings-options-box label{
+    margin: -0.2rem;
   }
 
   @media (min-width: 768px) {
